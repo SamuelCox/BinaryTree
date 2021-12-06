@@ -7,7 +7,7 @@ namespace BinaryTree
 
     public class BinaryTree<T> : ICollection<T> where T : IComparable
     {
-        private readonly BinaryTree<T> _innerTree;
+        private readonly InnerBinaryTree<T> _innerTree;
         private int _count;
         public int Count => _count;
 
@@ -15,7 +15,7 @@ namespace BinaryTree
 
         public BinaryTree()
         {
-            _innerTree = new BinaryTree<T>();
+            _innerTree = new InnerBinaryTree<T>();
         }
 
         public void Add(T item)
@@ -165,7 +165,7 @@ namespace BinaryTree
                     }
 
                 }
-                if (currentNode._left == null || currentNode._right == null)
+                if (currentNode != null && (currentNode._left == null || currentNode._right == null))
                 {
                     if (currentNode._left == null)
                     {
@@ -193,7 +193,7 @@ namespace BinaryTree
                     }
 
                 }
-                else
+                else if (currentNode != null)
                 {
                     InnerBinaryTree<T> inOrderPrevious = null;
                     InnerBinaryTree<T> tempNode;
